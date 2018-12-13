@@ -4,7 +4,7 @@ Sample Hello World program
 
 This version includes some testing, accessible with unittest.
 unittest command line:
-    python3 -m unittest hello05
+    python3 -m unittest hello/hello.py
 
 Copyright (C) 2018 Noah Hafner
     This program is free software: you can redistribute it and/or
@@ -47,7 +47,8 @@ def print_greeting():
 
 def main():
     print_greeting()
-    #test_printing()
+    #test_thing = Testing()
+    #test_thing.test_printing()
 
 
 if '__main__' == __name__:
