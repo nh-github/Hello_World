@@ -1,10 +1,10 @@
-#! /usr/bin/env python2
+#! /usr/bin/env python3
 """
-Sample Hello World program with a main guard
+Sample Hello World program
 
-This version demonstrates a function version of a hello world program using a
-main guard (if '__main__' ...) to run the function only when the program is
-itself run (and not when imported as a library/module.
+This version includes some testing, accessible with unittest.
+unittest command line:
+    python3 -m unittest hello05
 
 Copyright (C) 2018 Noah Hafner
     This program is free software: you can redistribute it and/or
@@ -21,18 +21,37 @@ Copyright (C) 2018 Noah Hafner
     License along with this program.  If not, see
     <https://www.gnu.org/licenses/>.
 """
-
 __version__ = 0.1
 
 import sys
+import unittest
+from unittest.mock import patch, call
+
+
+class Testing(unittest.TestCase):
+    @patch('builtins.print')
+    def test_printing(self, mocked_print):
+        print_greeting()
+
+        assert mocked_print.mock_calls == [call('Hello World')]
+        return
+
+    def test_test(self):
+        assert 1
+        return
+
+
+def print_greeting():
+    print("Hello World")
 
 
 def main():
-    print("hello world")
+    print_greeting()
+    #test_printing()
 
 
 if '__main__' == __name__:
     try:
         sys.exit(main())
-    except KeyboardInterrupt, e:
-        print "break, %s" % str(e)
+    except KeyboardInterrupt as e:
+        print("break, %s".format(str(e)))
